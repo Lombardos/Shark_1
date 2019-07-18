@@ -33,3 +33,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Sources/Common.h \
     Sources/Shark/DebugLogger.h
+
+DISTFILES += \
+    Views/Service/CDLogFile.qml

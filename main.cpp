@@ -11,12 +11,14 @@ int main(int argc, char *argv[])
 
     qInfo() << ""; //Robin according to yamassa
     qInfo() << "START"; //own Robin
+    qInfo() << (QString("Shark App v") + QString::number(VER_MAJOR) + "." + QString::number(VER_MINOR) + "." + QString::number(VER_MICRO)).toStdString().c_str(); //Robin according to yamassa
 
-    qInfo() << (QString("Shark App v") + QString::number(VER_MAJOR) + "." + QString::number(VER_MINOR) + "." + QString::number(VER_MICRO)).toStdString().c_str();
+   // QLoggingCategory::setFilterRules(QStringLiteral("qt.modbus* = true")); //Robin according to yamassa
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling); // Original from Qt
+    QGuiApplication app(argc, argv); // Original from Qt
+
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -25,9 +27,11 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+
     engine.load(url);
 
-    int result = app.exec(); //Robin podle yamassa
+    int result = app.exec(); //Robin according to yamassa
 
     return result;
 }
